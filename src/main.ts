@@ -1,3 +1,6 @@
-ModAPI.displayToChat({msg: "hello, this is eaglerforge!"})
-ModAPI.logger.loginfo({string: "you can log a string to console"})
-ModAPI.uwuify({string: "and even uwuify a string?"})
+import commandManager from "./CommandManager";
+
+globalThis.OakAPI ||= {};
+var OakAPI = globalThis.OakAPI;
+
+OakAPI.command ||= commandManager;

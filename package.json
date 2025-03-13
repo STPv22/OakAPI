@@ -1,7 +1,7 @@
 {
-  "name": "example-typescript-mod",
+  "name": "oakapi",
   "version": "1.0.0",
-  "description": "Example typescript mod for eaglerforge.",
+  "description": "egg",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "build-bun": "bun build --bundle ./src/main.ts --outdir=out/ --outfile=out/plugin.js --sourcemap=inline --watch --target browser --entry-naming EaglerForge-[hash].js",
