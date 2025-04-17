@@ -16,7 +16,7 @@
                 )
             )
         )
-        .executes((c) => {
+        .executes((context) => {
             ModAPI.displayToChat('called "foo" with no arguments!');
         });
 

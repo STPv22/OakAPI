@@ -22,12 +22,12 @@ commandManager['registerPrefix'] = function(prefix: string, preventdefault : boo
     }
 }
 
-function executes(call) {
-    return call;
+function executes(willExecute) {
+    return { willExecute };
 }
 
-function nextParameter(c) {
-    return {c, executes};
+function nextParameter(nextParam) {
+    return {nextParam, executes};
 }
 
 commandManager['register'] = function(name: string) : Object {
@@ -38,7 +38,7 @@ commandManager['register'] = function(name: string) : Object {
 commandManager['argument'] = function(name : string, type: any) {
 
 
-    return { name, type, nextParameter }
+    return { name, type, nextParameter, executes }
 }
 
 commandManager['runClient'] = function(prefix : number, command : any) {
@@ -50,10 +50,24 @@ commandManager['runClient'] = function(prefix : number, command : any) {
             alert('sent!');
 
             if (args[0] == clientPrefixList[prefix].prefix + command.name) {
-                if (args[1]) {
+                var paramNext = command.nextParam;
+                var executesNext = command.willExecute;
+                var context = {};
+                context['getArgument'] = function(argName : string) {
+                    return "wip";
+                }
 
-                } else if (command) {
-
+                for (var i = 0; i > args.length; i++) {
+                    if (args[i]) {
+                        var parsedArg = paramNext.type(args[i]);
+                        
+                        if (args[i + 1]) {
+                            executesNext = paramNext.willExecute;
+                            paramNext = paramNext.nextParam;
+                        }
+                    } else {
+                        executesNext(context);
+                    }
                 }
             }
         }
