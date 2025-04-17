@@ -1,6 +1,7 @@
 import commandManager from "./CommandManager";
 
-globalThis.OakAPI ||= {};
-var OakAPI = globalThis.OakAPI;
+var OakAPI = {};
 
-OakAPI.command ||= commandManager;
+OakAPI['command'] ||= commandManager;
+
+globalThis.OakAPI = OakAPI;
